@@ -23,6 +23,6 @@ public class BookstoreApplication {
 			Book test2 = new Book("Pohjoisen mytologia", "Neil Gaiman", 2019, 987654321, 11.90);
 			repository.save(test1);
 			repository.save(test2);
-		};
+		}; 
 	}
 }

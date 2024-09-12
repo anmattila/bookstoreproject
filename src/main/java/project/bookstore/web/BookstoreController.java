@@ -11,17 +11,16 @@ import project.bookstore.domain.BookRepository;
 @Controller
 public class BookstoreController {
 
-    // Spring-alusta luo sovelluksen käynnistyessä CarRepository-rajapintaa toteuttavan luokan olion 
-	// ja kytkee olion CarController-luokasta luodun olion attribuuttiolioksi
+    // Spring-alusta luo sovelluksen käynnistyessä BookRepository-rajapintaa toteuttavan luokan olion 
+	// ja kytkee olion BookController-luokasta luodun olion attribuuttiolioksi ?
     @Autowired
     private BookRepository repository;
 
-    @GetMapping("/index")
+    @GetMapping("/booklist")
     public String getBooks(Model model) {
         model.addAttribute("books", repository.findAll());
          return "booklist";
     }
-
+    
 }
-
 
