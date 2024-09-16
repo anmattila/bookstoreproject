@@ -33,7 +33,7 @@ public class BookstoreController {
     @PostMapping("/save")
     public String saveBook(Book book) {
         repository.save(book);
-        return "redirect:booklist";
+        return "redirect:/booklist";
     }
 
     @GetMapping("/delete/{id}")         // id polkumuuttuja, ei parametritieto
