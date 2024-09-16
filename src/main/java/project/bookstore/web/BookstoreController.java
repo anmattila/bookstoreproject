@@ -27,19 +27,26 @@ public class BookstoreController {
     @GetMapping("/add")
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
-        return "addbook";
+        return "bookform";
     }
-
+    
     @PostMapping("/save")
     public String saveBook(Book book) {
         repository.save(book);
         return "redirect:/booklist";
     }
-
+    
     @GetMapping("/delete/{id}")         // id polkumuuttuja, ei parametritieto
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
         repository.deleteById(bookId);
         return ("redirect:/booklist");
+    }
+
+    @GetMapping("/edit/{id}") 
+    public String editBook(@PathVariable("id") Long bookId, Model model) {
+        model.addAttribute("book", repository.findById(bookId));
+        // add current book object to model
+        return "bookform";
     }
     
 }
