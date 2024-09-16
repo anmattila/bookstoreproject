@@ -20,7 +20,7 @@ public class Book {
     }
     
     public Book(String title, String author, Integer publicationYear, Integer isbn, Double price) {
-        super(); // konstruktoi uuden olion, mitä eroa?
+        super(); // konstruktoi uuden olion, mitä eroa kun ennen ei ole käytetty?
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
