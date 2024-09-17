@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change books</title>
+    <title>Add book</title>
 </head>
 <body>
-    <h2>Make changes to your books</h2>
+    <h2>Add a new book to your booklist</h2>
     <div>
-        <form th:object="${book}" th:action="@{/save}" action="#" method="post">
-            <input type="hidden" th:field="*{id}" />
+        <form th:object="${book}" th:action="@{save}" action="#" method="post">
             
             <label for="title">Title</label>
             <input type="text" id="title" th:field="*{title}" />
@@ -26,7 +25,7 @@
             <label for="price">Price</label>
             <input type="text" id="price" th:field="*{price}" />  
             <br>
-            <input type="submit" value="Save"></input>
+            <input type="submit" class="btn btn-success" value="Add new book"></input>
         </form>
     </div>
     

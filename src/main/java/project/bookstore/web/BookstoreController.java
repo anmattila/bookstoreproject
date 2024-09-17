@@ -27,7 +27,7 @@ public class BookstoreController {
     @GetMapping("/add")
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
-        return "bookform";
+        return "addbook";
     }
     
     @PostMapping("/save")
@@ -45,8 +45,8 @@ public class BookstoreController {
     @GetMapping("/edit/{id}") 
     public String editBook(@PathVariable("id") Long bookId, Model model) {
         model.addAttribute("book", repository.findById(bookId));
-        // add current book object to model
-        return "bookform";
+        // tallennus / muutos nykyisen kirja idn mukaan
+        return "editbook";
     }
     
 }
