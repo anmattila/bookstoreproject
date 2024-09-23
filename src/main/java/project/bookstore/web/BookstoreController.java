@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import project.bookstore.domain.Book;
 import project.bookstore.domain.BookRepository;
-//import project.bookstore.domain.CategoryRepository;
+import project.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookstoreController {
@@ -20,8 +20,8 @@ public class BookstoreController {
     @Autowired
     private BookRepository repositoryB;
 
-    //@Autowired 
-    //private CategoryRepository repositoryC;
+    @Autowired 
+    private CategoryRepository repositoryC;
 
     @GetMapping("/booklist")
     public String bookList(Model model) {
@@ -32,7 +32,7 @@ public class BookstoreController {
     @GetMapping("/add")
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
-       // model.addAttribute("categories", repositoryC.findAll());
+        model.addAttribute("categories", repositoryC.findAll());
         return "addbook";
     }
 
@@ -40,7 +40,7 @@ public class BookstoreController {
     public String editBook(@PathVariable("id") Long bookId, Model model) {
         model.addAttribute("book", repositoryB.findById(bookId));
         // tallennus / muutos nykyisen kirja idn mukaan
-       // model.addAttribute("categories", repositoryC.findAll());
+        model.addAttribute("categories", repositoryC.findAll());
         return "editbook";
     }
 

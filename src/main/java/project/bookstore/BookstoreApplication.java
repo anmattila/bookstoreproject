@@ -18,24 +18,24 @@ public class BookstoreApplication {
 	}
 
 	@Bean 		// heti ohjelman käynnistyksen jälkeen 
-	public CommandLineRunner bookDemo(CategoryRepository repositoryC, BookRepository repositoryB) {
+	public CommandLineRunner bookDemo(BookRepository repositoryB, CategoryRepository repositoryC) {
 		return (arg) -> {
-
+ 
 			Category thriller = new Category("Thiller");
 			Category fantasy = new Category("Fantasy");
 			repositoryC.save(thriller);
-			repositoryC.save(thriller);
+			repositoryC.save(fantasy);
 
 			Book book1 = new Book("Kultahäkki", "Camilla Läckberg", 2019, 123456789, 12.95, thriller);
 			Book book2 = new Book("Pohjoisen mytologia", "Neil Gaiman", 2019, 987654321, 11.90, fantasy);
 			repositoryB.save(book1);
 			repositoryB.save(book2);
-			
-			repositoryB.findAll().forEach(book -> {
-				System.out.println(book.toString());
-			});
+
 			repositoryC.findAll().forEach(category -> {
 				System.out.println(category.toString());
+			});
+			repositoryB.findAll().forEach(book -> {
+				System.out.println(book.toString());
 			});
 		}; 
 	}
