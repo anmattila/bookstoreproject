@@ -8,7 +8,7 @@
 <body>
     <h2>Edit your old book</h2>
     <div>
-        <form th:object="${book}" th:action="@{save}" action="#" method="post">
+        <form th:object="${book}" th:action="@{/save}" action="#" method="post">
             <input type="hidden" th:field="*{id}" />
 
             <label for="title">Title</label>
@@ -26,7 +26,7 @@
             <label for="price">Price</label>
             <input type="text" id="price" th:field="*{price}" />  
             <br>
-            <input type="submit" value="Save edit"></input>
+            <input type="submit" class="btn btn-success" value="Save edit"></input>
         </form>
     </div>
     
