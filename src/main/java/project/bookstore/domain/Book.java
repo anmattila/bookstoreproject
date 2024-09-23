@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+// import jakarta.persistence.JoinColumn;
+// import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Book {
@@ -15,6 +17,11 @@ public class Book {
     private Integer publicationYear;
     private Integer isbn;
     private Double price;
+
+    // @ManyToOne // koska ownertable, kirjalla vain 1 kategoria tässä tapauksessa 
+    // @JoinColumn(name = "categoryid") // lisää tauluun ja linkkaa yhteen, foreing key nimi
+    // private Category category; // columnin tyyppi Category koska on linkki kategoria-olioon
+    
     
     public Book() {
     }
@@ -26,6 +33,7 @@ public class Book {
         this.publicationYear = publicationYear;
         this.isbn = isbn;
         this.price = price;
+        // this.category = category; // Category category
     }
 
     public Long getId() {
@@ -39,35 +47,35 @@ public class Book {
     public String getTitle() {
         return title;
     }
-
+    
     public void setTitle(String title) {
         this.title = title;
     }
-
+    
     public String getAuthor() {
         return author;
     }
-
+    
     public void setAuthor(String author) {
         this.author = author;
     }
-
+    
     public Integer getPublicationYear() {
         return publicationYear;
     }
-
+    
     public void setPublicationYear(Integer publicationYear) {
         this.publicationYear = publicationYear;
     }
-
+    
     public Integer getIsbn() {
         return isbn;
     }
-
+    
     public void setIsbn(Integer isbn) {
         this.isbn = isbn;
     }
-
+    
     public Double getPrice() {
         return price;
     }
@@ -75,11 +83,20 @@ public class Book {
     public void setPrice(Double price) {
         this.price = price;
     }
+    
+   /* public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+    */
 
     @Override
     public String toString() {
         return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
-                + ", isbn=" + isbn + ", price=" + price + "]";
+        + ", isbn=" + isbn + ", price=" + price + "]";
     }
     
 }
