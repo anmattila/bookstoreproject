@@ -13,11 +13,11 @@ import project.bookstore.domain.CategoryRepository;
 public class CategoryController {
 
     @Autowired
-    private CategoryRepository repository;
+    private CategoryRepository repositoryC;
 
     @GetMapping("/categorylist")
     public String categoryList(Model model) {
-        model.addAttribute("categories", repository.findAll());
+        model.addAttribute("categories", repositoryC.findAll());
         return "categorylist";
     }
 
@@ -29,7 +29,7 @@ public class CategoryController {
 
     @PostMapping("/savecategory")
     public String saveCategory(Category category) {
-        repository.save(category);
+        repositoryC.save(category);
         return "redirect:/categorylist";
     }
 

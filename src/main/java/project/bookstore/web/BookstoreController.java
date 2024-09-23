@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import project.bookstore.domain.Book;
 import project.bookstore.domain.BookRepository;
+//import project.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookstoreController {
@@ -17,36 +18,41 @@ public class BookstoreController {
     // toteuttavan luokan olion
     // ja kytkee olion BookController-luokasta luodun olion attribuuttiolioksi ?
     @Autowired
-    private BookRepository repository;
+    private BookRepository repositoryB;
+
+    //@Autowired 
+    //private CategoryRepository repositoryC;
 
     @GetMapping("/booklist")
     public String bookList(Model model) {
-        model.addAttribute("books", repository.findAll());
+        model.addAttribute("books", repositoryB.findAll());
         return "booklist";
     }
-
+    
     @GetMapping("/add")
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
+       // model.addAttribute("categories", repositoryC.findAll());
         return "addbook";
     }
 
     @GetMapping("/edit/{id}")
     public String editBook(@PathVariable("id") Long bookId, Model model) {
-        model.addAttribute("book", repository.findById(bookId));
+        model.addAttribute("book", repositoryB.findById(bookId));
         // tallennus / muutos nykyisen kirja idn mukaan
+       // model.addAttribute("categories", repositoryC.findAll());
         return "editbook";
     }
 
     @PostMapping("/save")
     public String saveBook(Book book) {
-        repository.save(book);
+        repositoryB.save(book);
         return "redirect:/booklist";
     }
 
     @GetMapping("/delete/{id}") // id polkumuuttuja, ei parametritieto
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
-        repository.deleteById(bookId);
+        repositoryB.deleteById(bookId);
         return ("redirect:/booklist");
     }
 

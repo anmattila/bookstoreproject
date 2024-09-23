@@ -10,7 +10,6 @@ import project.bookstore.domain.BookRepository;
 import project.bookstore.domain.Category;
 import project.bookstore.domain.CategoryRepository;
 
-
 @SpringBootApplication
 public class BookstoreApplication {
 
@@ -19,18 +18,19 @@ public class BookstoreApplication {
 	}
 
 	@Bean 		// heti ohjelman käynnistyksen jälkeen 
-	public CommandLineRunner bookDemo(BookRepository repositoryB, CategoryRepository repositoryC) {
+	public CommandLineRunner bookDemo(CategoryRepository repositoryC, BookRepository repositoryB) {
 		return (arg) -> {
-			Book book1 = new Book("Kultahäkki", "Camilla Läckberg", 2019, 123456789, 12.95);
-			Book book2 = new Book("Pohjoisen mytologia", "Neil Gaiman", 2019, 987654321, 11.90);
+
+			Category thriller = new Category("Thiller");
+			Category fantasy = new Category("Fantasy");
+			repositoryC.save(thriller);
+			repositoryC.save(thriller);
+
+			Book book1 = new Book("Kultahäkki", "Camilla Läckberg", 2019, 123456789, 12.95, thriller);
+			Book book2 = new Book("Pohjoisen mytologia", "Neil Gaiman", 2019, 987654321, 11.90, fantasy);
 			repositoryB.save(book1);
 			repositoryB.save(book2);
-
-			repositoryC.save(new Category("Thriller"));
-			repositoryC.save(new Category("Romance"));
-			repositoryC.save(new Category("Scifi"));
-			repositoryC.save(new Category("Fantasy"));
-
+			
 			repositoryB.findAll().forEach(book -> {
 				System.out.println(book.toString());
 			});
@@ -39,7 +39,8 @@ public class BookstoreApplication {
 			});
 		}; 
 	}
-
+	
 }
+
 // one to many, book have 1 category and category can have multiple books
 // so book needs categoryid -> book is owner of the relationship
