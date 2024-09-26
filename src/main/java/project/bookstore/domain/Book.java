@@ -1,5 +1,7 @@
 package project.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +21,7 @@ public class Book {
     private Double price;
 
     @ManyToOne // koska ownertable, kirjalla vain 1 kategoria tässä tapauksessa 
+    @JsonIgnoreProperties ("books")  // estää ikuisen hakuloopin, keskeytys kun kerran haettu kirja ja liittyvät tiedot
     @JoinColumn(name = "categoryid") // lisää tauluun ja linkkaa yhteen, foreing key nimi
     private Category category; // columnin tyyppi Category koska on linkki kategoria-olioon
     

@@ -21,7 +21,7 @@ public class BookstoreApplication {
 	public CommandLineRunner bookDemo(BookRepository repositoryB, CategoryRepository repositoryC) {
 		return (arg) -> {
  
-			Category thriller = new Category("Thiller");
+			Category thriller = new Category("Thriller");
 			Category fantasy = new Category("Fantasy");
 			repositoryC.save(thriller);
 			repositoryC.save(fantasy);
@@ -34,12 +34,14 @@ public class BookstoreApplication {
 			repositoryC.findAll().forEach(category -> {
 				System.out.println(category.toString());
 			});
-			repositoryB.findAll().forEach(book -> {
+
+			for (Book book : repositoryB.findAll()) {
 				System.out.println(book.toString());
-			});
-		}; 
-	}
+			}
+			// 2 eri tapaa tulostaa terminaliin
+		};
 	
+	}
 }
 
 // one to many, book have 1 category and category can have multiple books
