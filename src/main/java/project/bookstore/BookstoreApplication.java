@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import project.bookstore.domain.AppUser;
+import project.bookstore.domain.AppUserRepository;
 import project.bookstore.domain.Book;
 import project.bookstore.domain.BookRepository;
 import project.bookstore.domain.Category;
@@ -18,7 +20,8 @@ public class BookstoreApplication {
 	}
 
 	@Bean 		// heti ohjelman käynnistyksen jälkeen 
-	public CommandLineRunner bookDemo(BookRepository repositoryB, CategoryRepository repositoryC) {
+	public CommandLineRunner bookDemo(BookRepository repositoryB, CategoryRepository repositoryC, 
+			AppUserRepository appUserRepository) {
 		return (arg) -> {
  
 			Category thriller = new Category("Thriller");
@@ -39,6 +42,12 @@ public class BookstoreApplication {
 				System.out.println(book.toString());
 			}
 			// 2 eri tapaa tulostaa terminaliin
+
+			AppUser user1 = new AppUser("user", "$2a$12$SQBEz/uB8nCpQt7/YEXXb.SzBxObAaeOsQdcsZOTwoPqMdZuGV7gO", "USER");
+			AppUser user2 = new AppUser("admin", "$2a$12$DVzah1D6tgIYiPwg8j0stuOQ2ojreYWjFQZdpw5.BkBz9FQtyBepO", "ADMIN");
+			appUserRepository.save(user1);
+			appUserRepository.save(user2);
+
 		};
 	
 	}
