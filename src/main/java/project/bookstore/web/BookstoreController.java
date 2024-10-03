@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import project.bookstore.domain.Book;
 import project.bookstore.domain.BookRepository;
@@ -22,6 +23,11 @@ public class BookstoreController {
 
     @Autowired 
     private CategoryRepository repositoryC;
+
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
+    }
 
     @GetMapping("/booklist")
     public String bookList(Model model) {
