@@ -19,7 +19,7 @@ public class BookstoreApplication {
 		SpringApplication.run(BookstoreApplication.class, args);
 	}
 
-	@Bean 		// heti ohjelman käynnistyksen jälkeen 
+	@Bean
 	public CommandLineRunner bookDemo(BookRepository repositoryB, CategoryRepository repositoryC, 
 			AppUserRepository appUserRepository) {
 		return (arg) -> {
